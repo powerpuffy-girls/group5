@@ -1,0 +1,45 @@
+FILENAME = "my_diary.txt"
+
+def write_entry():
+    entry = input("Write your diary:\n")
+    
+    file = open(FILENAME, "w")
+    file.write(entry + "\n")
+    file.close()
+    
+    print("Diary saved (overwritten)!\n")
+
+def read_file():
+    try:
+        file = open(FILENAME, "r")
+        content = file.read()
+        file.close()
+        
+        print("\n--- Diary Content ---")
+        print(content if content else "Diary is empty.")
+        print("---------------------\n")
+        
+    except FileNotFoundError:
+        print("No diary file found. Please write first.\n")
+
+def main():
+    while True:
+        print("\nPersonal Diary")
+        print("1. Write diary")
+        print("2. Read diary")
+        print("3. Exit")
+        
+        choice = input("Choose an option: ")
+        
+        if choice == "1":
+            write_entry()
+        elif choice == "2":
+            read_file()
+        elif choice == "3":
+            print("Goodbye!")
+            break
+        else:
+            print("Invalid choice. Try again.")
+
+if __name__ == "__main__":
+    main()
